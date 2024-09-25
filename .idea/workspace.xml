@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90e1fcb5-d11f-4972-a495-a22ccf72ae3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DocFileTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/TextException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/XmlFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DocFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DocFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/XmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/XmlFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +76,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.DocFileTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Kursovay_OOP" />
@@ -84,8 +84,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DocFileTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Kursovay_OOP" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DocFileTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocFileTest.testOpenDocFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Kursovay_OOP" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DocFileTest" />
+      <option name="METHOD_NAME" value="testOpenDocFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocFileTest.testSaveDocFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Kursovay_OOP" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DocFileTest" />
+      <option name="METHOD_NAME" value="testSaveDocFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DocFileTest" />
+        <item itemvalue="JUnit.DocFileTest.testOpenDocFile" />
+        <item itemvalue="JUnit.DocFileTest.testSaveDocFile" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -106,7 +138,7 @@
       <workItem from="1726762044376" duration="41000" />
       <workItem from="1726762458144" duration="863000" />
       <workItem from="1726924081087" duration="14345000" />
-      <workItem from="1727267854294" duration="10602000" />
+      <workItem from="1727267854294" duration="14786000" />
     </task>
     <task id="LOCAL-00001" summary="Create project">
       <created>1727278585262</created>
@@ -136,7 +168,35 @@
       <option name="project" value="LOCAL" />
       <updated>1727278736285</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Tests">
+      <created>1727278785266</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278785266</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Starting the program">
+      <created>1727278813811</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278813811</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Exceptions">
+      <created>1727278867379</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278867379</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Creating XML-fails">
+      <created>1727278907001</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278907001</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,7 +207,11 @@
     <MESSAGE value="Creating a GUI" />
     <MESSAGE value="Accessing the database" />
     <MESSAGE value="Saving/loading a document" />
-    <option name="LAST_COMMIT_MESSAGE" value="Saving/loading a document" />
+    <MESSAGE value="Tests" />
+    <MESSAGE value="Starting the program" />
+    <MESSAGE value="Exceptions" />
+    <MESSAGE value="Creating XML-fails" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating XML-fails" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
