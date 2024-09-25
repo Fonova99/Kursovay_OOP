@@ -18,7 +18,7 @@ public class XmlFile {
     Object monitor;
 
     public void recordXmlFile(DefaultTableModel model) {
-        synchronized (monitor) {
+//        synchronized (monitor) {
             if (model == null) {
                 System.err.println("Model is not initialized.");
                 return;
@@ -74,7 +74,7 @@ public class XmlFile {
             } catch (ParserConfigurationException | TransformerException | IOException | SAXException e) {
                 e.printStackTrace();
             }
-        }
+//        }
 
     }
 
@@ -92,7 +92,7 @@ public class XmlFile {
     }
 
     public void readXmlFile(DefaultTableModel model) {
-        synchronized (monitor) {
+//        synchronized (monitor) {
             if (model == null) {
                 System.err.println("Model is not initialized.");
                 return;
@@ -125,6 +125,6 @@ public class XmlFile {
                 String disease = attrs.getNamedItem("disease").getNodeValue();
                 model.addRow(new String[]{doctor, speciality, cabinet, workSchedule, patient, disease}); //Запись данных в таблицу
             }
-        }
+//        }
     }
 }
