@@ -5,15 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="90e1fcb5-d11f-4972-a495-a22ccf72ae3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DocFile.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/DocFileTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/TextException.java" afterDir="false" />
@@ -115,12 +106,48 @@
       <workItem from="1726762044376" duration="41000" />
       <workItem from="1726762458144" duration="863000" />
       <workItem from="1726924081087" duration="14345000" />
-      <workItem from="1727267854294" duration="10294000" />
+      <workItem from="1727267854294" duration="10602000" />
     </task>
+    <task id="LOCAL-00001" summary="Create project">
+      <created>1727278585262</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278585262</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Creating a GUI">
+      <created>1727278635478</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278635478</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Accessing the database">
+      <created>1727278675875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278675875</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Saving/loading a document">
+      <created>1727278736285</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727278736285</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Create project" />
+    <MESSAGE value="Creating a GUI" />
+    <MESSAGE value="Accessing the database" />
+    <MESSAGE value="Saving/loading a document" />
+    <option name="LAST_COMMIT_MESSAGE" value="Saving/loading a document" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
