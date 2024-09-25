@@ -49,7 +49,7 @@ public class DocFile {
     }
 
     public void openDocFile(JFrame pcAdmin, DefaultTableModel model) {
-        FileDialog open = new FileDialog(pcAdmin, "Сохранение данных", FileDialog.LOAD);
+        FileDialog open = new FileDialog(pcAdmin, "Загрузка данных", FileDialog.LOAD);
         open.setFile("*.txt");
         open.setVisible(true); // Отобразить запрос пользователю
         String fileName = open.getFile();
