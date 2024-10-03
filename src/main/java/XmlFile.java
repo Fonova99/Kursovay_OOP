@@ -15,10 +15,11 @@ import java.io.*;
 
 public class XmlFile {
     Document doc;
-    Object monitor;
+    Object monitor = new Object();
+    DatabaseManager db = new DatabaseManager();
 
     public void recordXmlFile(DefaultTableModel model) {
-//        synchronized (monitor) {
+        synchronized (monitor) {
             if (model == null) {
                 System.err.println("Model is not initialized.");
                 return;
@@ -74,14 +75,14 @@ public class XmlFile {
             } catch (ParserConfigurationException | TransformerException | IOException | SAXException e) {
                 e.printStackTrace();
             }
-//        }
+        }
 
     }
 
     private String showEditor(String xmlString) {
         JTextArea textArea = new JTextArea(xmlString);
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(800, 400));
+        scrollPane.setPreferredSize(new Dimension(1000, 400));
 
         int result = JOptionPane.showConfirmDialog(null, scrollPane, "Редактирование XML", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
@@ -92,7 +93,7 @@ public class XmlFile {
     }
 
     public void readXmlFile(DefaultTableModel model) {
-//        synchronized (monitor) {
+        synchronized (monitor) {
             if (model == null) {
                 System.err.println("Model is not initialized.");
                 return;
@@ -124,7 +125,8 @@ public class XmlFile {
                 String patient = attrs.getNamedItem("patient").getNodeValue();
                 String disease = attrs.getNamedItem("disease").getNodeValue();
                 model.addRow(new String[]{doctor, speciality, cabinet, workSchedule, patient, disease}); //Запись данных в таблицу
+                db.updateDatabase(model);
             }
-//        }
+        }
     }
 }
