@@ -17,19 +17,14 @@ public class DatabaseManager {
         try (Connection connection = getConnection(); //Создает подключение к базе данных
              Statement statement = connection.createStatement(); //Создает объект Statement для выполнения SQL-запросов
              ResultSet resultSet = statement.executeQuery(query)) { //Выполняет SQL-запрос и возвращает результат в виде ResultSet
-
             ResultSetMetaData metaData = resultSet.getMetaData(); //Возвращение мета-данных по SQL-запросу
-
             int columnCount = metaData.getColumnCount(); //Возвращает количества столбцов
             int rowCount = 0;
-
             while (resultSet.next()) { //Пока, при перемещении курсора в начало есть строка, записывается количество строк
                 rowCount++;
             }
-
             String[][] table = new String[rowCount][columnCount]; //Создаем таблицу данных
             resultSet.beforeFirst(); // Возврат курсора в начало
-
             int rowIndex = 0;
             while (resultSet.next()) {
                 for (int i = 0; i < columnCount; i++) {
@@ -44,6 +39,45 @@ public class DatabaseManager {
             return new String[0][0];
         }
     }
+
+    public void updateDatabase(DefaultTableModel model) {
+        try (Connection connection = getConnection()) {
+            // Очистка таблиц в базе данных
+            String clearDoctorsQuery = "DELETE FROM Doctors";
+            String clearPatientsQuery = "DELETE FROM Patients";
+            try (PreparedStatement clearDoctorsStatement = connection.prepareStatement(clearDoctorsQuery);
+                 PreparedStatement clearPatientsStatement = connection.prepareStatement(clearPatientsQuery)) {
+                clearDoctorsStatement.executeUpdate();
+                clearPatientsStatement.executeUpdate();
+            }
+
+            // Вставка новых данных в таблицу Doctors
+            String insertDoctorsQuery = "INSERT INTO Doctors (Name_doctor, Speciality, Office_number, Work_schedule) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement insertDoctorsStatement = connection.prepareStatement(insertDoctorsQuery)) {
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    insertDoctorsStatement.setString(1, (String) model.getValueAt(i, 0));
+                    insertDoctorsStatement.setString(2, (String) model.getValueAt(i, 1));
+                    insertDoctorsStatement.setString(3, (String) model.getValueAt(i, 2));
+                    insertDoctorsStatement.setString(4, (String) model.getValueAt(i, 3));
+                    insertDoctorsStatement.executeUpdate();
+                }
+            }
+
+            // Вставка новых данных в таблицу Patients
+            String insertPatientsQuery = "INSERT INTO Patients (Doctor, Name_patient, Disease) VALUES (?, ?, ?)";
+            try (PreparedStatement insertPatientsStatement = connection.prepareStatement(insertPatientsQuery)) {
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    insertPatientsStatement.setString(1, (String) model.getValueAt(i, 0));
+                    insertPatientsStatement.setString(2, (String) model.getValueAt(i, 4));
+                    insertPatientsStatement.setString(3, (String) model.getValueAt(i, 5));
+                    insertPatientsStatement.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void addInfo(String doctor, String specialization, String roomNumber, String workingHours, String patient, String infoDisease) {
         String insertDoctorQuery = "INSERT INTO Doctors (Name_doctor, Speciality, Office_number, Work_schedule) VALUES (?, ?, ?, ?)";
@@ -169,7 +203,7 @@ public class DatabaseManager {
             statement.setString(2, speciality);
             statement.setString(3, disease);
 
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();  //записывает результат запроса
 
             while (resultSet.next()) {
                 String doctorName = resultSet.getString("Name_doctor");
