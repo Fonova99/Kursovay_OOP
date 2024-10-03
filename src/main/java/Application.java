@@ -124,7 +124,6 @@ public class Application {
     private void createTable() {
         String[] columns = {"ФИО врача", "Специализация", "Номер кабинета", "График работы", "ФИО пациента", "Заболевания"};
         String[][] data = db.createTableFromDatabase();
-
         model = new DefaultTableModel(data, columns);
         registry = new JTable(model);
         setColumnWidths(registry, columns);
@@ -188,11 +187,12 @@ public class Application {
         registry.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) { //е - хранит информацию о событии мыши: клик, кнопка мыши и тд
-                selectedRow = registry.rowAtPoint(e.getPoint()); //индекс строки, на которую был произведен клик(координаты точки, где произошел клик мыши)
+                if (e.getClickCount() == 1) { // Проверяем, что это одиночный клик
+                    selectedRow = registry.rowAtPoint(e.getPoint()); //индекс строки, на которую был произведен клик(координаты точки, где произошел клик мыши)
+                }
             }
         });
     }
-
     private void loadDataFromDatabase() {
         String[][] data = db.createTableFromDatabase(); //Создание массива из данных таблицы
         model.setRowCount(0); // Очистка текущих данных
@@ -200,7 +200,6 @@ public class Application {
             model.addRow(row); //Добавление построчно
         }
     }
-
     public void showAddInfoFromDatabase() {
         //Создание текстовых полей
         JTextField doctorField = new JTextField(30);
@@ -316,9 +315,6 @@ public class Application {
             JOptionPane.showMessageDialog(pcAdmin, myEx.getMessage());
             noException = false;
         }
-        if (noException) {
-            JOptionPane.showMessageDialog(pcAdmin, "Ищем информацию");
-        }
 
         String selectedDoctor = (String) doctor.getSelectedItem();
         String selectedSpeciality = (String) speciality.getSelectedItem();
@@ -332,7 +328,7 @@ public class Application {
             results.append(doctorName).append("\n");
         }
         // Отображаем результаты в диалоговом окне
-        JOptionPane.showMessageDialog(null, results.toString(), "Результаты поиска", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(pcAdmin, results.toString(), "Результаты поиска", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 
