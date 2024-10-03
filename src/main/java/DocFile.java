@@ -5,6 +5,8 @@ import java.io.*;
 
 public class DocFile {
 
+    DatabaseManager db = new DatabaseManager();
+
     public void saveDocFile (JFrame pcAdmin, DefaultTableModel model){
         // Собираем все данные из таблицы в одну строку
         StringBuilder sb = new StringBuilder();
@@ -75,6 +77,7 @@ public class DocFile {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        db.updateDatabase(model);
     }
 }
 
