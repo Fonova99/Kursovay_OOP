@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DocFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DocFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DocFileTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DocFileTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/XmlFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/XmlFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +144,15 @@
       <workItem from="1727267854294" duration="15385000" />
       <workItem from="1727292002214" duration="2059000" />
       <workItem from="1727796376518" duration="4827000" />
-      <workItem from="1727972125569" duration="3034000" />
+      <workItem from="1727972125569" duration="3378000" />
+      <workItem from="1727987138819" duration="5017000" />
+      <workItem from="1728024241580" duration="5539000" />
+      <workItem from="1728040302951" duration="4018000" />
+      <workItem from="1728064729694" duration="5332000" />
+      <workItem from="1728331207618" duration="2038000" />
+      <workItem from="1728412931070" duration="9176000" />
+      <workItem from="1728422304282" duration="768000" />
+      <workItem from="1728424121033" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="Create project">
       <created>1727278585262</created>
@@ -229,7 +238,35 @@
       <option name="project" value="LOCAL" />
       <updated>1727283526056</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Creating database">
+      <created>1727986931116</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1727986931116</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Creating application">
+      <created>1727986965741</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1727986965741</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Creating docfile">
+      <created>1727986985205</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727986985205</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Creating xmlfile">
+      <created>1727987002517</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1727987002518</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +283,10 @@
     <MESSAGE value="Creating XML-fails" />
     <MESSAGE value="Creating documents" />
     <MESSAGE value="Creating database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating database" />
+    <MESSAGE value="Creating application" />
+    <MESSAGE value="Creating docfile" />
+    <MESSAGE value="Creating xmlfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating xmlfile" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
