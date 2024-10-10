@@ -17,14 +17,16 @@ public class Application {
     private JButton addButton;
     private JButton changeButton;
     private JButton removeButton;
-    private JButton searchButton;
+    private JButton searchButtonFromPatients;
+
+    private JButton searchButtonFromDoctors;
     private JButton saveButton;
     private JButton openButton;
     private JButton saveXmlButton;
     private JButton openXmlButton;
     private JToolBar toolBar;
     private JTextField disease;
-    private JComboBox doctor, speciality;
+    private JComboBox doctor, patient;
     private JPanel filterPanel;
     private JTabbedPane tabbedPane = new JTabbedPane();
     private final TextException exception = new TextException();
@@ -39,7 +41,6 @@ public class Application {
         createTables();
         createButtons();
         createToolbar();
-        createSearchComponents();
         placeComponents();
         pcAdmin.setVisible(true);
     }
@@ -83,7 +84,8 @@ public class Application {
         addButton = new JButton("Добавить");
         changeButton = new JButton("Изменить");
         removeButton = new JButton("Удалить");
-        searchButton = new JButton("Поиск");
+        searchButtonFromDoctors = new JButton("Поиск");
+        searchButtonFromPatients = new JButton("Поиск");
         saveButton = new JButton("Сохранить");
         openButton = new JButton("Загрузить");
         saveXmlButton = new JButton("Сохранить Xml-файл");
@@ -145,14 +147,15 @@ public class Application {
             }
         });
 
-        searchButton.addActionListener(e -> searchButtonFromDatabase());
+        searchButtonFromDoctors.addActionListener(e -> searchButtonFromDoctors());
+        searchButtonFromPatients.addActionListener(e -> searchButtonFromPatients());
 
         saveButton.addActionListener(e -> {
             int selectedIndex = tabbedPane.getSelectedIndex();
             if (selectedIndex == 0) {
                 docFile.saveDoctorsToFile(pcAdmin, modelDoctors);
             } else if (selectedIndex == 1) {
-                docFile.savePatientsToFile(pcAdmin, modelPatients);
+                docFile.savePatientsToFile(pcAdmin, modelPatients, modelDoctors);
             }
         });
 
@@ -162,7 +165,7 @@ public class Application {
                 docFile.loadDoctorsFromFile(pcAdmin, modelDoctors);
                 db.updateDoctors(modelDoctors);
             } else if (selectedIndex == 1) {
-                docFile.loadPatientsFromFile(pcAdmin, modelPatients, modelDoctors); // Pass doctorModel if needed
+                docFile.loadPatientsFromFile(pcAdmin, modelPatients, modelDoctors);
                 db.updatePatients(modelPatients);
             }
         });
@@ -174,7 +177,7 @@ public class Application {
                 if (selectedIndex == 0) {
                     xml.recordXmlFileDoctors(modelDoctors);
                 } else if (selectedIndex == 1) {
-                    xml.recordXmlFilePatients(modelPatients);
+                    xml.recordXmlFilePatients(modelPatients, modelDoctors);
                 }
             }
         }).start());
@@ -186,7 +189,7 @@ public class Application {
                 if (selectedIndex == 0) {
                     xml.readXmlFileDoctors(modelDoctors);
                 } else if (selectedIndex == 1) {
-                    xml.readXmlFilePatients(modelPatients, modelDoctors);
+                    xml.readXmlFilePatients(modelPatients);
                 }
             }
         }).start());
@@ -194,7 +197,8 @@ public class Application {
         addButton.setToolTipText("Добавить информацию");
         changeButton.setToolTipText("Изменить информацию");
         removeButton.setToolTipText("Удалить информацию");
-        searchButton.setToolTipText("Поиск информации");
+        searchButtonFromDoctors.setToolTipText("Поиск информации");
+        searchButtonFromPatients.setToolTipText("Поиск информации");
         saveButton.setToolTipText("Сохранить данные");
         openButton.setToolTipText("Загрузить данные");
         saveXmlButton.setToolTipText("Сохранить Xml-файл");
@@ -225,32 +229,55 @@ public class Application {
     }
 
     private void specialityBox() {
-        speciality = new JComboBox();
-        List<String> specialties = db.searchSpecialityFromDatabase();
+        patient = new JComboBox();
+        List<String> patients = db.searchPatientsFromDatabase();
         // Добавляем пункт "Специальность" в начало списка
-        speciality.insertItemAt("Специальность", 0);
-        speciality.setSelectedIndex(0);
+        patient.insertItemAt("Пациенты", 0);
+        patient.setSelectedIndex(0);
         // Добавляем остальные пункты
-        for (String name : specialties) {
-            speciality.addItem(name);
+        for (String name : patients) {
+            patient.addItem(name);
         }
-    }
-
-    private void createSearchComponents() {
-        doctorBox();
-        specialityBox();
-        disease = new JTextField("Введите название заболевания");
-        filterPanel = new JPanel();
-        filterPanel.add(doctor);
-        filterPanel.add(speciality);
-        filterPanel.add(disease);
-        filterPanel.add(searchButton);
     }
 
     private void placeComponents() {
         pcAdmin.add(toolBar, BorderLayout.NORTH);
+
+        // Создаем панель для фильтров (врачи)
+        doctorBox();
+        JPanel doctorFilterPanel = new JPanel();
+        doctorFilterPanel.add(doctor);
+        doctorFilterPanel.add(searchButtonFromDoctors);
+
+        // Создаем панель для фильтров (пациенты)
+        specialityBox();
+        disease = new JTextField("Введите название заболевания", 15);
+        JPanel patientFilterPanel = new JPanel();
+        patientFilterPanel.add(patient);
+        patientFilterPanel.add(disease);
+        patientFilterPanel.add(searchButtonFromPatients);
+
+        // Изначально добавляем панель фильтра для "Врачи"
+        filterPanel = doctorFilterPanel;
         pcAdmin.add(filterPanel, BorderLayout.SOUTH);
+
+        // Добавляем слушатель для изменения вкладок
+        tabbedPane.addChangeListener(e -> {
+            int selectedIndex = tabbedPane.getSelectedIndex();
+            pcAdmin.remove(filterPanel); // Удаляем старую панель фильтров
+
+            if (selectedIndex == 0) {  // Вкладка "Врачи"
+                filterPanel = doctorFilterPanel;
+            } else if (selectedIndex == 1) {  // Вкладка "Пациенты"
+                filterPanel = patientFilterPanel;
+            }
+
+            pcAdmin.add(filterPanel, BorderLayout.SOUTH);  // Добавляем новую панель
+            pcAdmin.revalidate();  // Перерисовываем интерфейс
+            pcAdmin.repaint();
+        });
     }
+
 
     public void clickMouseForDoctors() {
         // Обработка выбора строки в таблице
@@ -350,20 +377,18 @@ public class Application {
 
         int result = JOptionPane.showConfirmDialog(null, panel, "Добавить нового пациента", JOptionPane.OK_CANCEL_OPTION); //Диалоговое окно
         if (result == JOptionPane.OK_OPTION) {  //Если была нажата кнопка "ОК"
-            String doctor = null;
-            String patient = null;
-            String infoDisease = null;
+            String doctor;
+            String patient;
+            String infoDisease;
             //Обработка исключения на пустую строчку
             try {
                 doctor = doctorField.getText();
                 patient = patientField.getText();
                 infoDisease = diseaseField.getText();
-
                 // Проверка наличия врача в базе данных
                 if (!db.isDoctorExists(doctor)) {
                     throw new SQLException("Такого врача не существует");
                 }
-
                 db.addPatientInfo(doctor, patient, infoDisease); //Добавить строчку в базу данных
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -461,7 +486,7 @@ public class Application {
         }
     }
 
-    public void searchButtonFromDatabase() {
+    public void searchButtonFromPatients() {
         try {
             exception.checkException(disease);
         } catch (NullPointerException ex) {
@@ -472,13 +497,22 @@ public class Application {
             noException = false;
         }
 
-        String selectedDoctor = (String) doctor.getSelectedItem();
-        String selectedSpeciality = (String) speciality.getSelectedItem();
+        String selectedPatient = (String) patient.getSelectedItem();
         String enteredDisease = disease.getText();
-
         // Выполняем поиск в базе данных
-        List<String> searchResults = db.searchRowFromDatabase(selectedDoctor, selectedSpeciality, enteredDisease);
+        List<String> searchResults = db.searchRowFromPatients(selectedPatient, enteredDisease);
+        StringBuilder results = new StringBuilder("Результаты поиска:\n");
+        for (String doctorName : searchResults) {
+            results.append(doctorName).append("\n");
+        }
+        // Отображаем результаты в диалоговом окне
+        JOptionPane.showMessageDialog(pcAdmin, results.toString(), "Результаты поиска", JOptionPane.INFORMATION_MESSAGE);
+    }
 
+    public void searchButtonFromDoctors() {
+        String selectedDoctor = (String) doctor.getSelectedItem();
+        // Выполняем поиск в базе данных
+        List<String> searchResults = db.searchRowFromDoctors(selectedDoctor);
         StringBuilder results = new StringBuilder("Результаты поиска:\n");
         for (String doctorName : searchResults) {
             results.append(doctorName).append("\n");
