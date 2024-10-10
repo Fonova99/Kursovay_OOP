@@ -8,7 +8,7 @@ public class DatabaseManager {
     private static final String USER = "root";
     private static final String PASSWORD = "Fononita#40";
 
-    private Connection getConnection() throws SQLException {
+    Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
@@ -238,39 +238,67 @@ public class DatabaseManager {
         return doctors;
     }
 
-    public List<String> searchSpecialityFromDatabase() {
-        List<String> specialties = new ArrayList<>();
+    public List<String> searchPatientsFromDatabase() {
+        List<String> patients = new ArrayList<>();
 
-        String query = "SELECT Speciality FROM Doctors";
+        String query = "SELECT Name_patient FROM Patients";
         try (Connection connection = getConnection(); //Создает подключение к базе данных
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
-                String doctorName = resultSet.getString("Speciality");
-                specialties.add(doctorName);
+                String patientName = resultSet.getString("Name_patient");
+                patients.add(patientName);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Ошибка при выполнении запроса: " + e.getMessage());
         }
-        return specialties;
+        return patients;
     }
 
-    public List<String> searchRowFromDatabase(String doctor, String speciality, String disease) {
+    public List<String> searchRowFromPatients(String patients, String disease) {
         List<String> results = new ArrayList<>();
 
-        String query = "SELECT DISTINCT Doctors.Name_doctor, Doctors.Speciality, Doctors.Office_number, Doctors.Work_schedule, Patients.Name_patient, Patients.Disease " +
+        String query = "SELECT DISTINCT Patients.Doctor, Patients.Name_patient, Patients.Disease " +
+                "FROM Patients " +
+                "WHERE (Patients.Name_patient = ? OR Patients.Disease = ?)";
+
+        try (Connection connection = getConnection(); //Создает подключение к базе данных
+             // Выполнения SQL-запроса с параметрами
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, patients);
+            statement.setString(2, disease);
+
+            ResultSet resultSet = statement.executeQuery();  //записывает результат запроса
+
+            while (resultSet.next()) {
+                String doctorName = resultSet.getString("Doctor");
+                String patientName = resultSet.getString("Name_patient");
+                String patientDisease = resultSet.getString("Disease");
+                String resultRow = "Врач: " + doctorName + ", Пациент: " + patientName + ", Заболевание: " + patientDisease;
+                results.add(resultRow);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Ошибка при выполнении запроса: " + e.getMessage());
+        }
+        return results;
+    }
+
+    public List<String> searchRowFromDoctors(String doctor) {
+        List<String> results = new ArrayList<>();
+
+        String query = "SELECT DISTINCT Doctors.Name_doctor, Doctors.Speciality, Doctors.Office_number, Doctors.Work_schedule " +
                 "FROM Doctors " +
                 "JOIN Patients ON Doctors.Name_doctor = Patients.Doctor " +
-                "WHERE (Doctors.Name_doctor = ? OR Doctors.Speciality = ? OR Patients.Disease = ?)";
+                "WHERE (Doctors.Name_doctor = ?)";
 
         try (Connection connection = getConnection(); //Создает подключение к базе данных
              // Выполнения SQL-запроса с параметрами
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, doctor);
-            statement.setString(2, speciality);
-            statement.setString(3, disease);
 
             ResultSet resultSet = statement.executeQuery();  //записывает результат запроса
 
@@ -279,9 +307,7 @@ public class DatabaseManager {
                 String specialityName = resultSet.getString("Speciality");
                 String officeNumber = resultSet.getString("Office_number");
                 String workSchedule = resultSet.getString("Work_schedule");
-                String patientName = resultSet.getString("Name_patient");
-                String patientDisease = resultSet.getString("Disease");
-                String resultRow = "Врач: " + doctorName + ", Специальность: " + specialityName + ", Кабинет: " + officeNumber + ", График работы: " + workSchedule + ", Пациент: " + patientName + ", Заболевание: " + patientDisease;
+                String resultRow = "Врач: " + doctorName + ", Специальность: " + specialityName + ", Кабинет: " + officeNumber + ", График работы: " + workSchedule;
                 results.add(resultRow);
             }
 
