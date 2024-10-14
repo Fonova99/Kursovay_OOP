@@ -5,16 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd363bd6-0c58-43a8-b9c0-dd4c209dfada" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Kursovay.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DatabaseManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DatabaseManagerTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/DocFile.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/TextException.java" afterDir="false" />
@@ -88,12 +78,40 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1728910578365</updated>
-      <workItem from="1728910580518" duration="318000" />
+      <workItem from="1728910580518" duration="639000" />
     </task>
+    <task id="LOCAL-00001" summary="Creating the general logic of a visual application in Swing">
+      <created>1728911014874</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728911014874</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Creating database access logic">
+      <created>1728911084946</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728911084946</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Selective creation of tests for SQL queries">
+      <created>1728911148334</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728911148334</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creating the general logic of a visual application in Swing" />
+    <MESSAGE value="Creating database access logic" />
+    <MESSAGE value="Selective creation of tests for SQL queries" />
+    <option name="LAST_COMMIT_MESSAGE" value="Selective creation of tests for SQL queries" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
